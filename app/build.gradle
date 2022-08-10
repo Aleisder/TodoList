@@ -30,6 +30,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -37,9 +40,27 @@ dependencies {
     // Room
     def room_version = "2.4.3"
     implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
 
+    // Lifecycle components
+    def livecycle_version = "2.5.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$livecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$livecycle_version"
+
+    //Fragments
+    implementation 'androidx.fragment:fragment-ktx:1.5.1'
+
+    //Navigation
+    implementation 'androidx.navigation:navigation-fragment:2.5.1'
+
+
+    // for adding recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+    // for adding cardview
+    implementation 'androidx.cardview:cardview:1.0.0'
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'

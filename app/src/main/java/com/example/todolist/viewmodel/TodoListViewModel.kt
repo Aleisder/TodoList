@@ -1,18 +1,18 @@
 package com.example.todolist.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.todolist.data.Todo
 import com.example.todolist.data.TodoRepository
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 class TodoListViewModel (private val repository: TodoRepository) : ViewModel() {
-    private val _todos = MutableLiveData<Flow<List<Todo>>>()
-    val todos: LiveData<Flow<List<Todo>>> = _todos
+    val todos = repository.selectAllTodos().asLiveData()
 
-
-    init {
-        _todos.value = repository.selectAllTodos()
+    fun insertTodo(todo: Todo) {
+        viewModelScope.launch {
+            repository.insertTodo(todo)
+        }
     }
 }
