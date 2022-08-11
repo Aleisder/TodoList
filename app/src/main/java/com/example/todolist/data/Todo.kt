@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class Todo(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo val title: String,
-    @ColumnInfo(name = "is_done") val isDone: Boolean
+    @ColumnInfo(name = "is_done") val isDone: Boolean = false
 )

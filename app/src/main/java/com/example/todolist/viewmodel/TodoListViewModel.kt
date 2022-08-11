@@ -1,18 +1,11 @@
 package com.example.todolist.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
-import com.example.todolist.data.Todo
-import com.example.todolist.data.TodoRepository
-import kotlinx.coroutines.launch
+import com.example.todolist.data.TodoDao
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class TodoListViewModel (private val repository: TodoRepository) : ViewModel() {
-    val todos = repository.selectAllTodos().asLiveData()
+@HiltViewModel
+class TodoListViewModel @Inject constructor(private val dao: TodoDao) : ViewModel() {
 
-    fun insertTodo(todo: Todo) {
-        viewModelScope.launch {
-            repository.insertTodo(todo)
-        }
-    }
 }

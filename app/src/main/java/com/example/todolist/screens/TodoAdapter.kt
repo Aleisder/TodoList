@@ -1,27 +1,33 @@
 package com.example.todolist.screens
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.data.Todo
 import com.example.todolist.databinding.ListItemBinding
 
-class TodoAdapter(val context: Context, val todoList: List<Todo>) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
+class TodoAdapter : ListAdapter<Todo, TodoAdapter.TodoViewHolder>(DiffCallback()) {
+
     class TodoViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
-        val layoutAdapter = ListItemBinding.inflate(LayoutInflater.from(parent.context))
-        return TodoViewHolder(layoutAdapter)
+        val layout = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return TodoViewHolder(layout)
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
+        val currentTodo = getItem(position)
         holder.binding.apply {
-            val todo = todoList[position]
-            tvTodoTitle.text = todo.title
-            cbIsDone.isChecked = false
+            tvTodoTitle.text = currentTodo.title
+            cbIsDone.isChecked = currentTodo.isDone
         }
     }
 
-    override fun getItemCount(): Int = todoList.size
+    class DiffCallback : DiffUtil.ItemCallback<Todo>() {
+        override fun areItemsTheSame(oldItem: Todo, newItem: Todo) = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: Todo, newItem: Todo) = oldItem == newItem
+    }
+
 }

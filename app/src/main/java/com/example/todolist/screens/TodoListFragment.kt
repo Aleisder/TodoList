@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.todolist.databinding.FragmentTodoListBinding
 import com.example.todolist.viewmodel.TodoListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TodoListFragment : Fragment() {
 
     private lateinit var binding: FragmentTodoListBinding
+    private val viewModel: TodoListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,9 +24,4 @@ class TodoListFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val context = this
-
-    }
 }

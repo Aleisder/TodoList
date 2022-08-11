@@ -1,31 +1,35 @@
 package com.example.todolist.data
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.todolist.di.ApplicationScope
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Provider
 
 @Database(entities = [Todo::class], version = 1, exportSchema = false)
 abstract class TodoDatabase : RoomDatabase() {
 
-    abstract val todoDao: TodoDao
+    abstract fun todoDao(): TodoDao
 
-    companion object {
-        @Volatile
-        private var INSTANCE: TodoDatabase? = null
+    class Callback @Inject constructor(
+        private val database: Provider<TodoDatabase>,
+        @ApplicationScope private val applicationScope: CoroutineScope) : RoomDatabase.Callback() {
+        // will be executed the first time we open the database
+        override fun onCreate(db: SupportSQLiteDatabase) {
+            super.onCreate(db)
+            val dao = database.get().todoDao()
 
-        fun getDatabase(context: Context, scope: CoroutineScope): TodoDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    TodoDatabase::class.java,
-                    "book_database")
-                    .fallbackToDestructiveMigration()
-                    .build()
-                INSTANCE = instance
-                instance
+            applicationScope.launch {
+                dao.insertTodo(Todo(0, "Tidy the room"))
+                dao.insertTodo(Todo(0, "Feed your cat"))
+                dao.insertTodo(Todo(0, "Dust the shelves"))
             }
+
+
         }
     }
 
