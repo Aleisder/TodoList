@@ -3,14 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:padding="12dp"
     android:layout_height="match_parent"
-    tools:context=".screens.AddNewTodoFragment">
+    tools:context=".screens.addnewtodo.AddNewTodoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="15dp">
 
+        <EditText
+            android:id="@+id/til_new_todo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="I need to do..."
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="15dp" />
+
+        <!--
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_new_todo"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -27,6 +39,7 @@
                 android:textSize="30sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
+        -->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_add_todo"

@@ -1,12 +1,13 @@
-package com.example.todolist.screens
+package com.example.todolist.screens.todolist
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.todolist.R
 import com.example.todolist.databinding.FragmentTodoListBinding
 import com.example.todolist.viewmodel.TodoListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +39,10 @@ class TodoListFragment : Fragment() {
 
         viewModel.todos.observe(viewLifecycleOwner) {
             todoAdapter.submitList(it)
+        }
+
+        binding.btAddTodo.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_todoListFragment_to_addNewTodoFragment)
         }
     }
 
