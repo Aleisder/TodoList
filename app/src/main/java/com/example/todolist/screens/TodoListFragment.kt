@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolist.databinding.FragmentTodoListBinding
 import com.example.todolist.viewmodel.TodoListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,22 @@ class TodoListFragment : Fragment() {
     ): View? {
         binding = FragmentTodoListBinding.inflate(layoutInflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val todoAdapter = TodoAdapter()
+
+        binding.rvTodoList.apply {
+            adapter = todoAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+        }
+
+        viewModel.todos.observe(viewLifecycleOwner) {
+            todoAdapter.submitList(it)
+        }
     }
 
 }
