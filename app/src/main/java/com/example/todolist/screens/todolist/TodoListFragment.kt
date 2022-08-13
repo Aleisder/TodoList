@@ -1,9 +1,9 @@
 package com.example.todolist.screens.todolist
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class TodoListFragment : Fragment() {
 
     private lateinit var binding: FragmentTodoListBinding
-    private val viewModel: TodoListViewModel by viewModels()
+    private val viewModel: TodoListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
