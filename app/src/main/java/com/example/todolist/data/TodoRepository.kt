@@ -8,4 +8,8 @@ interface TodoRepository {
 
     suspend fun insertTodo(todo: Todo)
 
+    suspend fun updateTodo(todo: Todo)
+
+    fun searchTodoByQuery(searchQuery: String): Flow<List<Todo>>
+
 }

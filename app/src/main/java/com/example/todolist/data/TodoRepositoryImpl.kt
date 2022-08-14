@@ -2,8 +2,9 @@ package com.example.todolist.data
 
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class TodoRepositoryImpl(private val dao: TodoDao) : TodoRepository  {
+class TodoRepositoryImpl @Inject constructor(private val dao: TodoDao) : TodoRepository  {
 
     override fun selectAllTodos(): Flow<List<Todo>> {
         return dao.selectAllTodos()
@@ -12,6 +13,14 @@ class TodoRepositoryImpl(private val dao: TodoDao) : TodoRepository  {
     @WorkerThread
     override suspend fun insertTodo(todo: Todo) {
         dao.insertTodo(todo)
+    }
+
+    override suspend fun updateTodo(todo: Todo) {
+        dao.updateTodo(todo)
+    }
+
+    override fun searchTodoByQuery(searchQuery: String): Flow<List<Todo>> {
+        return dao.searchTodoByQuery(searchQuery)
     }
 
 }
