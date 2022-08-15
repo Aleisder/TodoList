@@ -1,9 +1,6 @@
 package com.example.todolist.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.todolist.data.Todo
 import com.example.todolist.data.TodoDao
 import com.example.todolist.data.TodoRepositoryImpl
@@ -18,6 +15,7 @@ class TodoListViewModel @Inject constructor(private val repository: TodoReposito
     //holds all todos
     val todos = repository.selectAllTodos().asLiveData()
 
+
     //add new to-do to the end of list
     fun addNewTodo(title: String) {
         viewModelScope.launch {
@@ -30,9 +28,4 @@ class TodoListViewModel @Inject constructor(private val repository: TodoReposito
         return repository.searchTodoByQuery(query).asLiveData()
     }
 
-
-    fun onTodoSelected(todo: Todo) {}
-    fun onTodoCheckedChanged(todo: Todo, isChecked: Boolean) = viewModelScope.launch {
-        repository.updateTodo(todo.copy(isDone = isChecked))
-    }
 }

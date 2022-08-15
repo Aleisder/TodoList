@@ -8,18 +8,33 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/sv_search_todo"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
+        android:layout_marginTop="12dp"
         app:iconifiedByDefault="false"
-        app:queryHint="Search specific todo..."
+        app:layout_constraintEnd_toStartOf="@+id/tv_count_of_todos"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="12dp" />
+        app:queryHint="Search specific todo..." />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:text="@string/count_of_todos"
+        android:id="@+id/tv_count_of_todos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/sv_search_todo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="8/12" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_todo_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sv_search_todo"
         tools:listitem="@layout/list_item" />
 
@@ -28,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="44dp"
         android:contentDescription="Add new todo"
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
