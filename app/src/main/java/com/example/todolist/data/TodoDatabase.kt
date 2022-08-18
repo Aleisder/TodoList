@@ -18,6 +18,7 @@ abstract class TodoDatabase : RoomDatabase() {
     class Callback @Inject constructor(
         private val database: Provider<TodoDatabase>,
         @ApplicationScope private val applicationScope: CoroutineScope) : RoomDatabase.Callback() {
+
         // will be executed the first time we open the database
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)

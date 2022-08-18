@@ -23,4 +23,12 @@ class TodoRepositoryImpl @Inject constructor(private val dao: TodoDao) : TodoRep
         return dao.searchTodoByQuery(searchQuery)
     }
 
+    override fun getTodoById(id: Int): Flow<Todo> {
+        return dao.getTodoById(id)
+    }
+
+    override fun deleteTodo(todo: Todo) {
+        dao.deleteTodo(todo)
+    }
+
 }

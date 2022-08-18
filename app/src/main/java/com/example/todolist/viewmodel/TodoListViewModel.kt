@@ -19,13 +19,25 @@ class TodoListViewModel @Inject constructor(private val repository: TodoReposito
     //add new to-do to the end of list
     fun addNewTodo(title: String) {
         viewModelScope.launch {
-            val todo = Todo(0, title)
+            val todo = Todo(title = title)
             repository.insertTodo(todo)
+        }
+    }
+
+    fun updateTodo(todo: Todo) {
+        viewModelScope.launch(Dispatchers.IO) {
+      //todo
         }
     }
 
     fun searchTodos(query: String): LiveData<List<Todo>> {
         return repository.searchTodoByQuery(query).asLiveData()
+    }
+
+    fun deleteTodo(todo: Todo) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteTodo(todo)
+        }
     }
 
 }

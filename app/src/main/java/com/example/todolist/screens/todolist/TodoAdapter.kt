@@ -1,14 +1,16 @@
 package com.example.todolist.screens.todolist
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.data.Todo
 import com.example.todolist.databinding.ListItemBinding
 
-class TodoAdapter : ListAdapter<Todo, TodoAdapter.TodoViewHolder>(DiffCallback()) {
+class TodoAdapter(private val context: Context) : ListAdapter<Todo, TodoAdapter.TodoViewHolder>(DiffCallback()) {
 
     class TodoViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -22,6 +24,10 @@ class TodoAdapter : ListAdapter<Todo, TodoAdapter.TodoViewHolder>(DiffCallback()
         holder.binding.apply {
             tvTodoTitle.text = currentTodo.title
             cbIsDone.isChecked = currentTodo.isDone
+            cbIsDone.setOnClickListener {
+                Toast.makeText(context, "Checkbox clicked", Toast.LENGTH_SHORT).show()
+
+            }
         }
     }
 
