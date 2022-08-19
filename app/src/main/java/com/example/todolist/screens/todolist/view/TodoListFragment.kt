@@ -2,15 +2,15 @@ package com.example.todolist.screens.todolist.view
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todolist.R
 import com.example.todolist.databinding.FragmentTodoListBinding
 import com.example.todolist.screens.todolist.viewmodel.TodoListViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -48,12 +48,6 @@ class TodoListFragment : Fragment() {
         viewModel.todos.observe(viewLifecycleOwner) {
             todoAdapter.submitList(it)
             binding.tvCountOfTodos.text = it.size.toString()
-        }
-
-
-        binding.btAddTodo.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_todoListFragment_to_addNewTodoFragment)
         }
 
 

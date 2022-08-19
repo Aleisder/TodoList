@@ -7,6 +7,10 @@
         android:title="Todos" />
 
     <item
+        android:id="@+id/placeholder"
+        android:title="" />
+
+    <item
         android:id="@+id/navigation_stats"
         android:icon="@drawable/ic_stats"
         android:title="Stats" />

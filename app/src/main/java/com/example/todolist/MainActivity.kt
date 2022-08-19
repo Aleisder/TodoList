@@ -2,8 +2,6 @@ package com.example.todolist
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.todolist.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,12 +15,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navController = findNavController(R.id.fragment_container)
+        binding.bottomNavigationView.apply {
+            //remove the default shadow of view
+            background = null
 
-        //val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_list, R.id.navigation_stats))
-        //setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.bottomNavigationView.setupWithNavController(navController)
+            //disable the item-placeholder in menu
+            menu.getItem(1).isEnabled = false
+        }
 
     }
 }
