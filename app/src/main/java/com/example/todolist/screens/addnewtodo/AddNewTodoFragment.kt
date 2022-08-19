@@ -1,16 +1,17 @@
 package com.example.todolist.screens.addnewtodo
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.todolist.R
+import com.example.todolist.data.Todo
 import com.example.todolist.databinding.FragmentAddNewTodoBinding
-import com.example.todolist.viewmodel.TodoListViewModel
+import com.example.todolist.screens.todolist.viewmodel.TodoListViewModel
 
 
 class AddNewTodoFragment : Fragment() {
@@ -31,7 +32,8 @@ class AddNewTodoFragment : Fragment() {
 
         binding.btAddTodo.setOnClickListener {
             if (binding.tilNewTodo.text.isNotEmpty()) {
-                viewModel.addNewTodo(binding.tilNewTodo.text.toString())
+                val newTodo = Todo(0, binding.tilNewTodo.text.toString())
+                viewModel.addNewTodo(newTodo)
                 Toast.makeText(context,"Todo is added to the list", Toast.LENGTH_SHORT).show()
                 Navigation.findNavController(view).navigate(R.id.action_addNewTodoFragment_to_todoListFragment)
             } else {

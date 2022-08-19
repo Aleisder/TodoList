@@ -1,4 +1,4 @@
-package com.example.todolist.screens.todolist
+package com.example.todolist.screens.todolist.view
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.data.Todo
 import com.example.todolist.databinding.ListItemBinding
 
-class TodoAdapter(private val context: Context) : ListAdapter<Todo, TodoAdapter.TodoViewHolder>(DiffCallback()) {
+class TodoAdapter(private val context: Context) : ListAdapter<Todo, TodoAdapter.TodoViewHolder>(
+    DiffCallback()
+) {
 
     class TodoViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root)
 

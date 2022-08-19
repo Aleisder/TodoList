@@ -1,6 +1,5 @@
-package com.example.todolist.screens.todolist
+package com.example.todolist.screens.todolist.view
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -13,7 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
 import com.example.todolist.databinding.FragmentTodoListBinding
-import com.example.todolist.viewmodel.TodoListViewModel
+import com.example.todolist.screens.todolist.viewmodel.TodoListViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "TodoListFragment"
@@ -37,7 +37,6 @@ class TodoListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //setting up the RecyclerView
-
         val todoAdapter = TodoAdapter(requireContext())
         binding.rvTodoList.apply {
             adapter = todoAdapter
@@ -52,12 +51,10 @@ class TodoListFragment : Fragment() {
         }
 
 
-
         binding.btAddTodo.setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_todoListFragment_to_addNewTodoFragment)
         }
-
 
 
         // this widget implement the deleting of to-do by swiping it right
@@ -66,17 +63,25 @@ class TodoListFragment : Fragment() {
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
-            ): Boolean { return false }
+            ): Boolean {
+                return false
+            }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 // get the item at a particular position
-                val todo = viewModel.todos.value!![viewHolder.bindingAdapterPosition]
+                val deletedTodo = viewModel.todos.value!![viewHolder.bindingAdapterPosition]
 
                 // delete to-do from database
-                viewModel.deleteTodo(todo)
+                viewModel.deleteTodo(deletedTodo)
 
                 // update RecyclerView
                 todoAdapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
+
+                Snackbar.make(binding.rvTodoList, "The Todo was deleted", Snackbar.LENGTH_SHORT)
+                    .setAction("Undo") {
+                        viewModel.addNewTodo(deletedTodo)
+                        todoAdapter.notifyItemInserted(deletedTodo.id)
+                    }.show()
             }
 
         }).attachToRecyclerView(binding.rvTodoList)
