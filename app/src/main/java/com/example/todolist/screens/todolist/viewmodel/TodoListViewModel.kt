@@ -25,9 +25,10 @@ class TodoListViewModel @Inject constructor(private val repository: TodoReposito
         }
     }
 
-    fun updateTodo(todo: Todo) {
+    fun changeIsDone(todo: Todo) {
         viewModelScope.launch(Dispatchers.IO) {
-      //todo
+            val isDone = todo.isDone
+            repository.updateTodo(Todo(todo.id, todo.title, !isDone ))
         }
     }
 

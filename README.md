@@ -8,9 +8,10 @@
 - User can search a specific Todo(s) via search line
 - User can delete a todo by swiping it right
 - If user accidentally delete a Todo he can undo this action in bottom Snackbar menu
+- User can mark Todo as completed and it makes changes in database
 ___
 ### What Is In The Process Of Implementation:
-- An ability to mark Todo as completed (i. e. the updating data in database)
+- Made an adding new Todo via BottomAppBar instead of using separate Fragment
 - A red background with the icon of bin, when user swipes the Todo right and delete it
 ___
 ### What Is Expected To Be Implemented In The Future:

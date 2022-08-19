@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.data.Todo
 import com.example.todolist.databinding.ListItemBinding
+import com.example.todolist.screens.todolist.viewmodel.TodoListViewModel
 
-class TodoAdapter(private val context: Context) : ListAdapter<Todo, TodoAdapter.TodoViewHolder>(
+class TodoAdapter(private val context: Context, private val viewModel: TodoListViewModel) : ListAdapter<Todo, TodoAdapter.TodoViewHolder>(
     DiffCallback()
 ) {
 
@@ -28,7 +29,7 @@ class TodoAdapter(private val context: Context) : ListAdapter<Todo, TodoAdapter.
             cbIsDone.isChecked = currentTodo.isDone
             cbIsDone.setOnClickListener {
                 Toast.makeText(context, "Checkbox clicked", Toast.LENGTH_SHORT).show()
-
+                viewModel.changeIsDone(currentTodo)
             }
         }
     }

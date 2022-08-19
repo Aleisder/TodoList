@@ -37,7 +37,7 @@ class TodoListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //setting up the RecyclerView
-        val todoAdapter = TodoAdapter(requireContext())
+        val todoAdapter = TodoAdapter(requireContext(), viewModel)
         binding.rvTodoList.apply {
             adapter = todoAdapter
             layoutManager = LinearLayoutManager(requireContext())
