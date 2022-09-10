@@ -41,6 +41,4 @@
         app:layout_anchor="@id/bottom_app_bar"/>
 
 
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

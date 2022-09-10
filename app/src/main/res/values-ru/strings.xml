@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Todo List</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="count_of_todos">$d/$d</string>
-    <string name="add_new_todo_hint">I want to do…</string>
-    <string name="button_add_new_todo">Add</string>
+    <string name="add_new_todo_hint">Мне нужно сделать…</string>
+    <string name="button_add_new_todo">Добавить</string>
 
 </resources>

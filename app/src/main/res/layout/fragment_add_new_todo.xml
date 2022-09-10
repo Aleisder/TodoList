@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:padding="12dp"
-    android:layout_height="match_parent"
+    android:layout_height="240sp"
     tools:context=".screens.addnewtodo.AddNewTodoFragment">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
             android:id="@+id/til_new_todo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="I need to do..."
+            android:hint="@string/add_new_todo_hint"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -46,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Add"
+            android:text="@string/button_add_new_todo"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

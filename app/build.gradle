@@ -60,7 +60,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$livecycle_version"
 
     // Fragments
-    implementation 'androidx.fragment:fragment-ktx:1.5.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.2'
 
     // Navigation
     implementation 'androidx.navigation:navigation-fragment:2.5.1'

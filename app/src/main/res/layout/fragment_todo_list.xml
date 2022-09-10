@@ -18,12 +18,12 @@
         app:queryHint="Search specific todo..." />
 
     <com.google.android.material.textview.MaterialTextView
-        android:text="@string/count_of_todos"
         android:id="@+id/tv_count_of_todos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
+        android:text="@string/count_of_todos"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@+id/sv_search_todo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +34,7 @@
         android:id="@+id/rv_todo_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layoutAnimation="@anim/layout_animation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sv_search_todo"
         tools:listitem="@layout/list_item" />
