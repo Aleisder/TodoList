@@ -21,14 +21,15 @@ private const val TAG = "TodoListFragment"
 @AndroidEntryPoint
 class TodoListFragment : Fragment() {
 
-    private lateinit var binding: FragmentTodoListBinding
+    private var binding: FragmentTodoListBinding? = null
     private val viewModel: TodoListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentTodoListBinding.inflate(layoutInflater, container, false)
+    ): View {
+        val binding = FragmentTodoListBinding.inflate(layoutInflater, container, false)
+        this.binding = binding
         return binding.root
     }
 
@@ -38,7 +39,7 @@ class TodoListFragment : Fragment() {
 
         //setting up the RecyclerView
         val todoAdapter = TodoAdapter(requireContext(), viewModel)
-        binding.rvTodoList.apply {
+        binding!!.rvTodoList.apply {
             adapter = todoAdapter
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
@@ -47,7 +48,7 @@ class TodoListFragment : Fragment() {
         //todos from viewModel are shown in RecyclerView
         viewModel.todos.observe(viewLifecycleOwner) {
             todoAdapter.submitList(it)
-            binding.tvCountOfTodos.text = it.size.toString()
+            binding!!.tvCountOfTodos.text = it.size.toString()
         }
 
 
@@ -71,19 +72,19 @@ class TodoListFragment : Fragment() {
                 // update RecyclerView
                 todoAdapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
 
-                Snackbar.make(binding.rvTodoList, "The Todo was deleted", Snackbar.LENGTH_SHORT)
+                Snackbar.make(binding!!.rvTodoList, "The Todo was deleted", Snackbar.LENGTH_SHORT)
                     .setAction("Undo") {
                         viewModel.addNewTodo(deletedTodo)
                         todoAdapter.notifyItemInserted(deletedTodo.id)
                     }.show()
             }
 
-        }).attachToRecyclerView(binding.rvTodoList)
+        }).attachToRecyclerView(binding!!.rvTodoList)
 
 
 
 
-        binding.svSearchTodo.apply {
+        binding!!.svSearchTodo.apply {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     Log.d(TAG, "${todoAdapter.itemCount}")
@@ -102,5 +103,9 @@ class TodoListFragment : Fragment() {
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 
 }

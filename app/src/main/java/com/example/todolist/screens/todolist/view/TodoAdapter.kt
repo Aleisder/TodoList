@@ -11,14 +11,19 @@ import com.example.todolist.data.Todo
 import com.example.todolist.databinding.ListItemBinding
 import com.example.todolist.screens.todolist.viewmodel.TodoListViewModel
 
-class TodoAdapter(private val context: Context, private val viewModel: TodoListViewModel) : ListAdapter<Todo, TodoAdapter.TodoViewHolder>(
-    DiffCallback()
-) {
+class TodoAdapter(
+    private val context: Context,
+    private val viewModel: TodoListViewModel
+    ) : ListAdapter<Todo, TodoAdapter.TodoViewHolder>(DiffCallback()) {
 
     class TodoViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
-        val layout = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val layout = ListItemBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return TodoViewHolder(layout)
     }
 

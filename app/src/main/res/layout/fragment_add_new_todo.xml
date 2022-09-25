@@ -14,7 +14,8 @@
         android:padding="15dp">
 
         <EditText
-            android:id="@+id/til_new_todo"
+            android:id="@+id/et_new_todo_title"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/add_new_todo_hint"
@@ -52,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_new_todo" />
+            app:layout_constraintTop_toBottomOf="@+id/et_new_todo_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

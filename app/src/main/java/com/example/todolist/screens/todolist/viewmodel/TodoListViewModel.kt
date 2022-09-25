@@ -1,7 +1,5 @@
 package com.example.todolist.screens.todolist.viewmodel
 
-import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -14,11 +12,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TodoListViewModel @Inject constructor(private val repository: TodoRepositoryImpl) : ViewModel() {
+class TodoListViewModel @Inject constructor(
+    private val repository: TodoRepositoryImpl
+    ) : ViewModel() {
 
     //holds all todos
-    val todos = repository.selectAllTodos().asLiveData()
-
+    private val _todos = repository.selectAllTodos().asLiveData()
+    val todos get() = _todos
 
     //add new to-do to the end of list
     fun addNewTodo(todo: Todo) {

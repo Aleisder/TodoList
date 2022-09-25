@@ -1,7 +1,13 @@
+### Overview
+Todo List is an app, where you can store your things to do. It helps you not to forget what you were going to do, and also helps you to track what things you have already done.
+___
+### Appearance
+![](images/appearance.png)
+___
 ### Include The Following Libraries:
 - Room
 - Dagger-Hilt
-
+___
 ### What Is Already Done:
 - RecyclerView shows the list of Todos on the screen
 - User can add new Todo to the end of list
@@ -20,4 +26,4 @@ ___
 - New screen for statistics of user activity (how many todos he has done etc.)
 - Smooth, concise design
 
-*Last Update: 19.08.2022*
+*Last Update: 25.09.2022*

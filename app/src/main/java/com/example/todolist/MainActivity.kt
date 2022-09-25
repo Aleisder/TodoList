@@ -1,7 +1,6 @@
 package com.example.todolist
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -34,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.fabAddNewTodo.setOnClickListener {
             navController.navigate(R.id.action_todoListFragment_to_addNewTodoFragment)
-            Toast.makeText(this, "Add new Todo", Toast.LENGTH_SHORT).show()
         }
 
 
