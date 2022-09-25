@@ -2,7 +2,7 @@
 Todo List is an app, where you can store your things to do. It helps you not to forget what you were going to do, and also helps you to track what things you have already done.
 ___
 ### Appearance
-![](images/appearance.png)
+<img src="images/appearance.png" width="250"></img>
 ___
 ### Include The Following Libraries:
 - Room
